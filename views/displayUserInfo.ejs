@@ -1,0 +1,45 @@
+<% include ./partials/header.ejs %>
+<% var follow = true; %>
+<div>
+    <% if(rs.length > 0) { %>
+
+    <b>username:</b> <%= rs[0].username %>
+
+    <% for( var i = 0; i < list.length; i++) {%>
+    <%console.log("your id and his id = ",local.session.user.user_id, " ",  list[i].friend_id);%>
+        <% if( list[i].friend_id == local.session.user.user_id ) {
+            follow = false;
+        }
+    }%>
+    <%if( local.session.user.user_id == rs[0].user_id ) { %>
+        <%console.log("you're on your own page");%>
+    <%}else if( follow ) { %>
+        <button style="margin-left:20px;" onclick="location.href='/users/follow?user_id=<%=rs[0].user_id%>&friend_id=<%=local.session.user.user_id%>';">Follow</button>
+    <%} else {%>
+        <button style="margin-left:20px;" onclick="location.href='/users/unfollow?user_id=<%=rs[0].user_id%>&friend_id=<%=local.session.user.user_id%>';">Unfollow</button>
+    <%}%>
+    <Br /><br />
+    <table border="1" style="display:inline-block; margin-right: 30px;">
+        <tr><th>People following <%=rs[0].username%></th></tr>
+        <% for (var i=0; list.length > i; i++) { %>
+            <tr><td><%= list[i].username %></td></tr>
+        <% } %>
+    </table>
+<% console.log(""); %>
+    <table border="1" style="display:inline-block;">
+        <tr><th>People <%=rs[0].username%> is following</th></tr>
+        <% for (var i=0; yours.length > i; i++) { %>
+        <tr><td><%= yours[i].username %></td></tr>
+        <% } %>
+    </table>
+    <% } else { %>
+    No users exist.
+    <% } %>
+
+</div>
+<br /><br />
+<% if(local.session.user.user_id == rs[0].user_id ) {%>
+    <a href="/users/edit?user_id=<%= local.session.user.user_id%>">Edit Profile</a>
+<%}%>
+
+<% include ./partials/footer.ejs %>

@@ -1,0 +1,24 @@
+<% include ./partials/header.ejs %>
+
+<% if(rs.length > 0) { %>
+Title: <%= rs[0].title %>
+
+<p>Description: <%= rs[0].description %></p>
+<% console.log("user_rating thing is: ", user_rating.rating, " ", local.session.user.user_id);%>
+
+<p>ESRB rating: <%= esrb.rating%></p>
+<p>Average Rating: <%= avg_rating.average%> / 5</p>
+
+<% if(local.session.user.user_id > 0) { %>
+    <% if(user_rating.rating === null) { %>
+        <br /><p>Rate:</p>
+        <% for (var i=1; i < 6; i++) { %>
+            <button onclick="location.href='/game/rate?game_id=<%=rs[0].game_id%>&rating=<%=i%>&user_id=<%=local.session.user.user_id%>';"><%=i%></button>
+        <% } %>
+    <%}%>
+<% } %>
+<% } else { %>
+No game matched game id <%= game_id %>.
+<% } %>
+
+<% include ./partials/footer.ejs %>

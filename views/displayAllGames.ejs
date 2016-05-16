@@ -1,0 +1,56 @@
+<% include ./partials/header.ejs %>
+
+<div>
+    <% if( (typeof local.session.user === 'undefined') || (local.session.user.user_id == 0) ) {%>
+        <% if( rs.message ) {  %>
+        <div class="message">
+            <%= rs.message %>
+        </div>
+        <% } %>
+        <% if(rs.length > 0) { %>
+        <table border="1">
+            <tr><th>Game Title</th></tr>
+            <% for (var i=0; rs.length > i; i++) { %>
+            <tr>
+                <td><a href="/game/?game_id=<%= rs[i].game_id %>"> <%= rs[i].title %></a></td>
+            </tr>
+            <% } %>
+        </table>
+        <% } else { %>
+        No movies exist.
+        <% } %>
+    <%}%>
+
+    <%if( (typeof local.session.user !== 'undefined') && (local.session.user.user_id > 0) ) {%>
+        <% if( typeof rs.message !== 'undefined' ) {  %>
+            <div class="message">
+                <%= rs.message %>
+            </div>
+        <% } %>
+        <% if(rs.length > 0) { %>
+        <table border="1">
+            <tr><th>Game Title</th><th>Actions</th></tr>
+            <% for (var i=0; rs.length > i; i++) { %>
+            <tr>
+                <td><a href="/game/?game_id=<%= rs[i].game_id %>"> <%= rs[i].title %></a></td>
+                <td>
+                    <a href="/game/delete/?game_id=<%= rs[i].game_id %>&title=<%= rs[i].title %>">Delete</a>
+                    <a href="/game/edit/?game_id=<%= rs[i].game_id %>">Edit</a>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+        <% } else { %>
+        No movies exist.
+        <% } %>
+    <div style="margin-top:10px;">
+        <a href="/game/create">Create New Game</a>
+        <br />
+    </div>
+    <%}%>
+
+</div>
+
+
+
+<% include ./partials/footer.ejs %>

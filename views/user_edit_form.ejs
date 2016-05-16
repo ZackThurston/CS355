@@ -1,0 +1,25 @@
+<% include partials/header.ejs %>
+
+<div id="test"></div>
+<% if (typeof message !== 'undefined') { %>
+<div><%= message %></div>
+<% } %>
+<% if(rs.length == 1) { %>
+<h1>Edit User</h1>
+<form method="POST" action="/users/update_user">
+    <input type="hidden" name="user_id" value="<%= rs[0].user_id %>" />
+    Username <input type="text" id="username" name="username" value="<%= rs[0].username%>" />
+    <br />
+    Password <input type="text" id="password" name="password" value="<%= rs[0].password%>" />
+    <br />
+
+
+    <button id="editUser">Save Changes</button>
+</form>
+<% } else if (rs.length == 0) { %>
+No user matches that ID.
+<% } else {%>
+More than one record was returned.
+<% } %>
+
+<% include partials/footer.ejs %>

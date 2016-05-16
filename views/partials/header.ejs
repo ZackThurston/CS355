@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+<body>
+<%var random = true; %>
+<div style="float:right;">
+<!-- this logout stuff currently isn't working. It never shows up -->
+    <% if(typeof local.session !== 'undefined') { %>
+        <%if(typeof local.session.user !== 'undefined') {%>
+            <% if( local.session.user.user_id > 0 ) { %>
+                Welcome, <%= local.session.user.username %>
+                <br /><br />
+                <a href="/logout">Logout</a>
+                <%random = false;%>
+            <%}%>
+        <%}%>
+    <% }
+
+    if(random) { %>
+    Not a member? <a href="/register">Register</a><br /><br />
+    Already a member? <a href="/login">Login</a>
+    <% } %>
+</div>
+
+<div id="header">
+    <p>
+        CS 355 Database Management Systems
+    </p>
+</div>
+
+<div id="menu">
+    <a href="/">Homepage</a>
+    <br />
+    <a href="/game/all">Show all Games</a>
+    <br />
+    <a href="/game/create">Create a New Game</a>
+    <br />
+    <a href="/users/all">Show all users</a>
+    <br />
+    <a href="/logout">Logout</a>
+    <br />
+    <a href="/about">About Page</a>
+    <!--
+    <br />
+    <a href="/users/create">Create a New User</a>
+    <br />
+    <a href="/state/new">Create a New State</a>
+    -->
+
+    <% if (typeof js_includes !== 'undefined') { %>
+    <% for(var i=0; i < js_includes.length; i++) { %>
+    <script src="<%= js_includes[i] %>"></script>
+    <% }%>
+    <% }%>
+</div>

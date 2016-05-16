@@ -1,0 +1,27 @@
+<% include ./partials/header.ejs %>
+
+<div id="test"></div>
+<% if (typeof message !== 'undefined') { %>
+<div><%= message %></div>
+<% } %>
+<% if(rs.length == 1) { %>
+<h1>Edit Game</h1>
+<form method="POST" action="/game/update_game">
+    <input type="hidden" name="game_id" value="<%= rs[0].game_id %>" />
+    Title <input type="text" id="title" name="title" value="<%= rs[0].title%>" />
+    <br />
+    <br />
+    Description <textarea name="description"><%= rs[0].description %></textarea>
+    <br />
+    <br />
+
+
+    <button id="addBtn">Edit</button>
+</form>
+<% } else if (rs.length == 0) { %>
+No game matches that ID.
+<% } else {%>
+More than one record was returned.
+<% } %>
+
+<% include ./partials/footer.ejs %>

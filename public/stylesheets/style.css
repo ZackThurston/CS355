@@ -1,0 +1,64 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body p {
+  padding: 5px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#header p {
+    background-color: olive;
+    font-size: 48px;
+}
+#header {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.title {
+    text-align: center;
+}
+
+#content td {
+  padding: 0 5px 0 5px;
+}
+
+#content th {
+  padding: 0 5px 0 5px;
+}
+
+#content button {
+    background-color: red;
+}
+
+.list {
+  margin-left: 100px;
+}
+
+.list li {
+  margin-left: 100px;
+}
+
+#menu {
+  line-height:30px;
+  background-color:#eeeeee;
+  float:left;
+  padding:5px;
+  height: 400px;
+}
+
+#footer {
+    font-size: 20px;
+   text-align: center;
+   background-color: olive;
+   clear: both;
+ }
+
+.message {
+    padding-bottom: 30px;
+}
